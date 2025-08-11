@@ -1,0 +1,90 @@
+name: talim
+description: "TK Al Alim"
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.4
+  flutter: ">=3.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  
+  lottie: ^3.1.3
+  image_picker: ^1.1.2
+  cupertino_icons: ^1.0.8
+  animations: ^2.0.11
+  fl_chart: ^0.69.0
+  table_calendar: ^3.0.9
+  pinput: ^5.0.0
+  flutter_bloc: ^8.1.3
+  http: ^1.2.2
+  flutter_launcher_icons: ^0.14.1
+  shared_preferences: ^2.3.2
+  email_otp: ^3.0.2
+  # firebase_core: ^2.16.0
+  # firebase_auth: ^4.8.2
+  google_sign_in: ^6.2.2
+  # carousel_slider: ^4.2.1
+  # smooth_page_indicator: ^1.0.0
+  rive: ^0.12.3
+  google_fonts: ^6.1.0
+  pdf: ^3.6.0
+  printing: ^5.5.0
+  path_provider: ^2.1.5
+  intl: any
+  flutter_pdfview: ^1.4.1+1
+  syncfusion_flutter_pdfviewer: ^30.2.4
+  dotted_border: ^2.0.0
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/
+    - assets/animations/
+    - assets/rive/
+  fonts:
+    - family: SFProText
+      fonts:
+        - asset: assets/fonts/SF-Pro-Text-Bold.otf
+          weight: 700
+        - asset: assets/fonts/SF-Pro-Text-BoldItalic.otf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/SF-Pro-Text-Medium.otf
+          weight: 500
+        - asset: assets/fonts/SF-Pro-Text-Regular.otf
+          weight: 400
+
+  
+    - family: OdorMeanChey
+      fonts:
+        - asset: assets/fonts/OdorMeanChey-Regular.ttf
+    - family: NotoSanCondensed
+      fonts:
+        - asset: assets/fonts/NotoSans_Condensed-Black.ttf
+    - family: NotoSanSemiBold
+      fonts:
+        - asset: assets/fonts/NotoSans-SemiBold.ttf
+    - family: Manjari
+      fonts:
+        - asset: assets/fonts/Manjari-Bold.ttf
+
+
+flutter_icons:
+  remove_alpha_ios: true
+  android: true
+  ios: true
+  image_path: "assets/images/logo.png"
