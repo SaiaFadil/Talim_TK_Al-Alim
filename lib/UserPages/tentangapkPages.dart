@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
- 
+
 import 'package:talim/src/CustomText.dart';
 import 'package:talim/src/customColor.dart';
 import 'package:talim/src/topnav.dart';

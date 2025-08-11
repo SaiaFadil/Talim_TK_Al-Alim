@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:talim/src/customDropdown.dart';
 import 'package:talim/src/customConfirmDialog.dart';
- 
+
 import 'dart:typed_data';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -264,7 +264,7 @@ class _ProfilAkunPageState extends State<ProfilAkunPage> {
                                       height: 100,
                                       fit: BoxFit.cover,
                                     )
-                                   : Image.network(foto)),
+                                  : Image.network(foto)),
                     ),
                     Positioned(
                       bottom: 0,

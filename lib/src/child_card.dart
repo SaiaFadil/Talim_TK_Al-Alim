@@ -5,7 +5,7 @@ import 'package:talim/MainMenu/SubMenuBeranda/PembayaranSiswa.dart';
 import 'package:talim/MainMenu/SubMenuBeranda/PresensiSiswa.dart';
 import 'package:talim/MainMenu/SubMenuBeranda/RaportSiswa.dart';
 import 'package:talim/Models/child_model.dart';
-import 'package:talim/SendApi/Server.dart';
+
 import 'package:talim/src/CustomText.dart';
 import 'package:talim/src/customColor.dart';
 import 'package:talim/src/pageTransition.dart';
@@ -55,10 +55,8 @@ class _ChildCardState extends State<ChildCard> with TickerProviderStateMixin {
                   CircleAvatar(
                     foregroundColor: CustomColors.greyText,
                     radius: 18,
-                    child: Image.asset(
-                      Server.urlGambar("ic_jumlah_siswa.png"),
-                      height: 15,
-                    ),
+                    child: Image.asset('assets/images/ic_jumlah_siswa.png',
+                        height: 15),
                     backgroundColor: CustomColors.greyBackground2,
                   ),
                   const SizedBox(width: 12),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:talim/MainMenu/SubMenuBeranda/DetailSiswa.dart';
 import 'package:talim/MainMenu/subMenuProfile/DetailProfil.dart';
- 
+
 import 'package:talim/src/CustomText.dart';
 import 'package:talim/src/customColor.dart';
 

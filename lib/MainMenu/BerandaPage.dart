@@ -181,7 +181,7 @@ class _BerandaPageState extends State<BerandaPage> {
                             height: 25,
                             width: 25,
                             child: Image.asset(
-                               'assets/images/logo.png',
+                              'assets/images/logo.png',
                               fit: BoxFit.contain,
                             ),
                           ),

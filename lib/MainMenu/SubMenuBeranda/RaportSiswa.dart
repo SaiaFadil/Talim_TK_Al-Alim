@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
@@ -84,10 +83,8 @@ class _RaportSiswaState extends State<RaportSiswa>
 
   @override
   Widget build(BuildContext context) {
-    String activeTab = _tabController.index == 0 ? 'TK A' : 'TK B';
-    String semesterKey = currentSemester == 1 ? 'semester1' : 'semester2';
-    final data = raportData[activeTab]?[semesterKey];
-
+    // aktif tab dihitung ulang di builder _buildTabContent
+    // gunakan map di builder konten, tidak perlu variabel lokal 'data' di sini
     final bg = Colors.white;
     final primary = const Color(0xFF2D6BF6);
 
