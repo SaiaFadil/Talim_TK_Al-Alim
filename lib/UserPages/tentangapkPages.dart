@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talim/SendApi/Server.dart';
+ 
 import 'package:talim/src/CustomText.dart';
 import 'package:talim/src/customColor.dart';
 import 'package:talim/src/topnav.dart';
@@ -22,7 +22,7 @@ class Tentangapk extends StatelessWidget {
           child: Column(
             children: [
               Image.asset(
-                Server.urlGambar('logo.png'),
+                'assets/images/logo.png',
                 height: 200,
               ),
               const SizedBox(height: 20),

@@ -1,9 +1,5 @@
 import 'dart:convert';
-import 'package:talim/SendApi/tokenJWT.dart';
 import 'package:talim/src/pageTransition.dart';
-
-import 'package:talim/SendApi/Server.dart';
-import 'package:talim/SendApi/userApi.dart';
 import 'package:talim/UserPages/loginPages.dart';
 import 'package:talim/src/customFormfield.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:talim/src/customDropdown.dart';
 import 'package:talim/src/customConfirmDialog.dart';
-import 'package:http/http.dart' as http;
+ 
 import 'dart:typed_data';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -63,72 +59,10 @@ class _ProfilAkunPageState extends State<ProfilAkunPage> {
 //Awal backend
 
   Future<void> showProfil() async {
-    String? email = await TokenJwt.getEmail();
-    String? token = await TokenJwt.getToken();
-    final result = await UserApi.getProfil(email.toString());
-    if (result != null) {
-      if (result['status'] == "success") {
-        if (result['data']['foto'] != null) {
-          foto = result['data']['foto'];
-        }
-        nik = result['data']['nik'];
-        nama_lengkap = result['data']['nama_lengkap'];
-        no_hp = result['data']['no_telpon'];
-        jenis_kelamin = result['data']['jenis_kelamin'];
-        if (result['data']['alamat'] == null) {
-          alamat = "";
-        } else {
-          alamat = result['data']['alamat'];
-        }
-        if (result['jumlah_greenhouse'] == null) {
-          jumlah_gh = 0;
-        } else {
-          jumlah_gh = result['jumlah_greenhouse'];
-        }
-        print(nama_lengkap);
-        namaLengkapController.text = nama_lengkap;
-        nikController.text = nik;
-        noHpController.text = no_hp;
-        alamatController.text = alamat;
-        jumlahGHController.text = "$jumlah_gh";
-      } else if (result['status'] == "error" &&
-          result['message'] == "token error must login") {
-        print("Resultt : $result");
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Pengambilan data gagal email: $email}')),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Pengambilan data gagal token: $token')),
-        );
-        Navigator.pushAndRemoveUntil(
-          context,
-          SmoothPageTransition(page: const Login()),
-          (route) => false, // Ini akan menghapus semua halaman sebelumnya
-        );
-      } else if (result['status'] == "error") {
-        print("Resultt : $result");
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-              content: Text('Pengambilan data gagal: ${result['message']}')),
-        );
-      } else {
-        print("Resulttt : $result");
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-              content:
-                  Text('Pendaftaran gagal: ada kesalahan pengiriman data')),
-        );
-      }
-    } else {
-      print("gagal : $result");
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text('Pendaftaran gagal: ada kesalahan pengiriman data')),
-      );
-    }
-
+    // Frontend only: skip panggilan server, gunakan nilai default/dummy
+    await Future.delayed(const Duration(milliseconds: 200));
     setState(() {
-      _isLoading = false; // Menyembunyikan loading setelah permintaan selesai
+      _isLoading = false;
     });
   }
 
@@ -172,7 +106,7 @@ class _ProfilAkunPageState extends State<ProfilAkunPage> {
         : truncatedEncodedBaseName;
   }
 
-  late http.MultipartRequest request;
+  // late http.MultipartRequest request; // di-nonaktifkan (frontend only)
   //AKHIR BACKEND
 
   // Definisi error untuk setiap field
@@ -330,7 +264,7 @@ class _ProfilAkunPageState extends State<ProfilAkunPage> {
                                       height: 100,
                                       fit: BoxFit.cover,
                                     )
-                                  : Image.network(Server.UrlImageProfil(foto))),
+                                   : Image.network(foto)),
                     ),
                     Positioned(
                       bottom: 0,

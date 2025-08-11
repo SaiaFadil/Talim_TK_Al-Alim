@@ -3,7 +3,6 @@ import 'package:talim/MainMenu/SubMenuBeranda/SemuaAgenda.dart';
 import 'package:talim/MainMenu/SubMenuBeranda/SemuaPengumuman.dart';
 import 'package:talim/Models/child_model.dart';
 import 'package:talim/SendApi/AnakAPI.dart';
-import 'package:talim/SendApi/Server.dart';
 import 'package:talim/src/CustomText.dart';
 import 'package:talim/src/child_card.dart';
 import 'package:talim/src/customColor.dart';
@@ -128,7 +127,7 @@ class _BerandaPageState extends State<BerandaPage> {
       ),
       child: Row(
         children: [
-          Image.asset(Server.urlGambar('childrenDashboard.png'), height: 150),
+          Image.asset('assets/images/childrenDashboard.png', height: 150),
           SizedBox(width: 22),
           Expanded(
             child: Column(
@@ -182,7 +181,7 @@ class _BerandaPageState extends State<BerandaPage> {
                             height: 25,
                             width: 25,
                             child: Image.asset(
-                              Server.urlGambar("logo.png"),
+                               'assets/images/logo.png',
                               fit: BoxFit.contain,
                             ),
                           ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talim/SendApi/Server.dart';
+ 
 import 'package:talim/UserPages/loginPages.dart';
 import 'package:talim/src/CustomButton.dart';
 import 'package:talim/src/CustomText.dart';
@@ -47,9 +47,9 @@ class _SliderPState extends State<SliderP> {
   );
 
   final urlImages = [
-    Server.urlGambar("Robotik.jpg"),
-    Server.urlGambar("Menggambar.jpg"),
-    Server.urlGambar("Mewarnai.jpg"),
+    'assets/images/Robotik.jpg',
+    'assets/images/Menggambar.jpg',
+    'assets/images/Mewarnai.jpg',
   ];
 
   final deskripsi = [
@@ -233,7 +233,7 @@ class _SliderPState extends State<SliderP> {
                                   height: 25,
                                   width: 25,
                                   child: Image.asset(
-                                    Server.urlGambar("logo.png"),
+                                    'assets/images/logo.png',
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -344,7 +344,7 @@ class _SliderPState extends State<SliderP> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(Server.urlGambar(imgIcon), scale: 2),
+              Image.asset('assets/images/' + imgIcon, scale: 2),
               SizedBox(height: 10),
               Text(hasil,
                   style: CustomText.TextSfProBold(20, CustomColors.secondary)),

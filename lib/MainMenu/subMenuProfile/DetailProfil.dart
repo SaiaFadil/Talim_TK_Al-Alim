@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:talim/SendApi/Server.dart';
+ 
 import 'package:talim/src/CustomText.dart';
 import 'package:talim/src/customColor.dart';
 
@@ -133,7 +133,7 @@ class _DetailProfilState extends State<DetailProfil> {
                   backgroundImage: (profilData["avatar"] == null ||
                           profilData["avatar"].toString().isEmpty ||
                           profilData["avatar"].toString() == "null")
-                      ? AssetImage(Server.urlGambar("logo.png"))
+                      ? const AssetImage('assets/images/logo.png')
                           as ImageProvider
                       : NetworkImage(profilData["avatar"]),
                 ),
