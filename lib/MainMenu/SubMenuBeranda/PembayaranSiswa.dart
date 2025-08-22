@@ -13,7 +13,21 @@ class PembayaranSiswa extends StatefulWidget {
 }
 
 class _PembayaranSiswaState extends State<PembayaranSiswa> {
-  double fontSize = 14; // ukuran default
+  double fontSize = 14;
+
+  void changeFontSize() {
+    setState(() {
+      if (fontSize == 14) {
+        fontSize = 16;
+      } else if (fontSize == 16) {
+        fontSize = 18;
+      } else if (fontSize == 18) {
+        fontSize = 20;
+      } else {
+        fontSize = 14;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,31 +47,10 @@ class _PembayaranSiswaState extends State<PembayaranSiswa> {
         ),
         centerTitle: true,
         actions: [
-          PopupMenuButton<double>(
+          IconButton(
             icon: const Icon(Icons.text_fields, color: Colors.black),
-            onSelected: (value) {
-              setState(() {
-                fontSize = value;
-              });
-            },
-            itemBuilder: (context) => [
-              const PopupMenuItem(
-                value: 14,
-                child: Text("14"),
-              ),
-              const PopupMenuItem(
-                value: 16,
-                child: Text("16"),
-              ),
-              const PopupMenuItem(
-                value: 18,
-                child: Text("18"),
-              ),
-              const PopupMenuItem(
-                value: 20,
-                child: Text("20"),
-              ),
-            ],
+            onPressed: changeFontSize,
+            tooltip: "Ubah ukuran font",
           ),
         ],
       ),
@@ -187,9 +180,6 @@ class _PembayaranSiswaState extends State<PembayaranSiswa> {
               onTap: () {
                 Navigator.push(
                     context, SmoothPageTransition(page: PembayaranSPP()));
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Navigasi ke halaman SPP")),
-                );
               },
               child: Container(
                 padding: const EdgeInsets.all(16),
@@ -241,10 +231,6 @@ class _PembayaranSiswaState extends State<PembayaranSiswa> {
               onTap: () {
                 Navigator.push(
                     context, SmoothPageTransition(page: PembayaranLainnya()));
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                      content: Text("Navigasi ke pembayaran lainnya")),
-                );
               },
               child: Container(
                 padding: const EdgeInsets.all(16),

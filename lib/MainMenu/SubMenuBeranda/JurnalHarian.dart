@@ -210,6 +210,7 @@ class _JurnalHarianState extends State<JurnalHarian> {
 
               // Tips untuk Orang Tua
               Container(
+                margin: EdgeInsets.symmetric(horizontal: 10),
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: CustomColors.whiteColor,
@@ -228,29 +229,36 @@ class _JurnalHarianState extends State<JurnalHarian> {
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: Colors.green.withOpacity(0.1),
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(12),
-                            topRight: Radius.circular(12)),
-                      ),
-                      child: Row(
-                        children: const [
-                          Icon(Icons.lightbulb_outline, color: Colors.green),
-                          SizedBox(width: 8),
-                          Text("Tips untuk Orang Tua",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 14)),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Text(
-                        data["tips"],
-                        style: TextStyle(
-                          fontSize: fontSizes[fontIndex],
-                          height: 1.5,
+                        border: BoxBorder.all(color: Colors.green, width: 1),
+                        color: Colors.green.withOpacity(0.3),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(12),
                         ),
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: const [
+                              Icon(Icons.lightbulb_outline,
+                                  color: Colors.green),
+                              SizedBox(width: 8),
+                              Text("Tips untuk Orang Tua",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14)),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Text(
+                              data["tips"],
+                              style: TextStyle(
+                                fontSize: fontSizes[fontIndex],
+                                height: 1.5,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -261,6 +269,7 @@ class _JurnalHarianState extends State<JurnalHarian> {
                 "Tidak ada catatan untuk tanggal ini",
                 style: TextStyle(color: Colors.grey),
               ),
+            const SizedBox(height: 50),
           ],
         ),
       ),

@@ -62,14 +62,8 @@ class _LoginPageState extends State<Login> {
   }
 
   void login() {
-    if (emailCtrl.text == "email@gmail.com" && passCtrl.text == "password") {
+    if (emailCtrl.text == "contoh@gmail.com" && passCtrl.text == "p") {
       trigSuccess?.change(true);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Berhasil masuk!"),
-          backgroundColor: CustomColors.green,
-        ),
-      );
       Navigator.pushReplacement(
           context, SmoothPageTransition(page: NavbarMenu()));
     } else {

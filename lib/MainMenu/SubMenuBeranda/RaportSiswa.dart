@@ -69,13 +69,27 @@ class _RaportSiswaState extends State<RaportSiswa>
       await file.writeAsBytes(res.bodyBytes);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Berhasil diunduh: ${file.path}')),
+          SnackBar(
+            content: Text('Berhasil diunduh: Cek Folder Download anda'),
+            backgroundColor: Colors.green,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
         );
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Gagal mengunduh: $e')),
+          SnackBar(
+            content: Text('Gagal mengunduh: $e'),
+            backgroundColor: Colors.red,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
         );
       }
     }

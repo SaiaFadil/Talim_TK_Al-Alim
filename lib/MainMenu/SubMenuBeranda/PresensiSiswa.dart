@@ -43,6 +43,8 @@ class _PresensiSiswaState extends State<PresensiSiswa> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     String monthKey =
         "${currentMonth.year.toString().padLeft(4, '0')}-${currentMonth.month.toString().padLeft(2, '0')}";
     var data = presensiData[monthKey];
@@ -62,99 +64,116 @@ class _PresensiSiswaState extends State<PresensiSiswa> {
         elevation: 0,
         leading: const BackButton(color: Colors.black),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Pilih bulan
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.arrow_back_ios, size: 16),
-                  onPressed: () => changeMonth(-1),
-                ),
-                Text(
-                  DateFormat("MMMM yyyy", "id_ID").format(currentMonth),
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.arrow_forward_ios, size: 16),
-                  onPressed: () => changeMonth(1),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            // Hari hadir & persentase
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.grey.shade300),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Pilih bulan
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Column(
-                    children: [
-                      Text(
-                        "$hadirCount",
-                        style: const TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      const Text("Hari Hadir"),
-                    ],
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back_ios, size: 16),
+                    onPressed: () => changeMonth(-1),
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        "${persentase.toStringAsFixed(0)}%",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: CustomColors.secondary,
-                        ),
-                      ),
-                      const Text("Tingkat Kehadiran"),
-                    ],
+                  Flexible(
+                    child: Text(
+                      DateFormat("MMMM yyyy", "id_ID").format(currentMonth),
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.arrow_forward_ios, size: 16),
+                    onPressed: () => changeMonth(1),
                   ),
                 ],
               ),
-            ),
-            const SizedBox(height: 16),
-            // Ringkasan Kehadiran
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.grey.shade300),
+              const SizedBox(height: 16),
+
+              // Hari hadir & persentase
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.grey.shade300),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Flexible(
+                      child: Column(
+                        children: [
+                          Text(
+                            "$hadirCount",
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          const Text("Hari Hadir"),
+                        ],
+                      ),
+                    ),
+                    Flexible(
+                      child: Column(
+                        children: [
+                          Text(
+                            "${persentase.toStringAsFixed(0)}%",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: CustomColors.secondary,
+                            ),
+                          ),
+                          const Text("Tingkat Kehadiran"),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text("Ringkasan Kehadiran",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      _summaryItem("Sakit", sakitCount, Colors.orange.shade100),
-                      const SizedBox(width: 12),
-                      _summaryItem("Alpha", alphaCount, Colors.red.shade100),
-                      const SizedBox(width: 12),
-                      _summaryItem("Izin", izinCount, Colors.blue.shade100),
-                    ],
-                  ),
-                ],
+              const SizedBox(height: 16),
+
+              // Ringkasan Kehadiran
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.grey.shade300),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text("Ringkasan Kehadiran",
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 10,
+                      runSpacing: 8,
+                      children: [
+                        _summaryItem(
+                            "Sakit", sakitCount, Colors.orange.shade100),
+                        _summaryItem("Alpha", alphaCount, Colors.red.shade100),
+                        _summaryItem("Izin", izinCount, Colors.blue.shade100),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            const Text("Riwayat Presensi",
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            const SizedBox(height: 8),
-            Expanded(
-              child: ListView.builder(
+              const SizedBox(height: 16),
+
+              const Text("Riwayat Presensi",
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              const SizedBox(height: 8),
+
+              // ListView di dalam SingleChildScrollView → pakai shrinkWrap + physics
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: hadirCount,
                 itemBuilder: (context, index) {
                   var item = data?["hadir"]?[index];
@@ -169,9 +188,12 @@ class _PresensiSiswaState extends State<PresensiSiswa> {
                       title: Text(
                         DateFormat("EEEE, d MMM yyyy", "id_ID").format(tgl),
                         style: const TextStyle(fontWeight: FontWeight.bold),
+                        overflow: TextOverflow.ellipsis,
                       ),
                       subtitle: Text(
-                          "Masuk: ${item["masuk"]}   Keluar: ${item["keluar"]}"),
+                        "Masuk: ${item["masuk"]}   Keluar: ${item["keluar"]}",
+                        overflow: TextOverflow.ellipsis,
+                      ),
                       trailing: Container(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 4),
@@ -186,8 +208,8 @@ class _PresensiSiswaState extends State<PresensiSiswa> {
                   );
                 },
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -195,7 +217,7 @@ class _PresensiSiswaState extends State<PresensiSiswa> {
 
   Widget _summaryItem(String label, int count, Color bgColor) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
       decoration: BoxDecoration(
         color: bgColor,
         borderRadius: BorderRadius.circular(6),

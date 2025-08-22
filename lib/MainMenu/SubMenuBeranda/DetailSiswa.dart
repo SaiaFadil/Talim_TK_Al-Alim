@@ -118,6 +118,7 @@ class DetailSiswa extends StatelessWidget {
                     "Nomor Telepon", siswaData["orang_tua"]["no_telp"]),
               ],
             ),
+            const SizedBox(height: 50),
           ],
         ),
       ),
