@@ -24,9 +24,9 @@ class _SliderPState extends State<SliderP> {
     'assets/images/Mewarnai.jpg',
   ];
   final deskripsi = [
-    "Robotik adalah kegiatan yang membantu anak untuk mengembangkan kreativitas. Dengan robotik, anak dapat membuat robot sesuai dengan imajinasi mereka.",
-    "Menggambar adalah kegiatan yang membantu anak untuk mengembangkan kreativitas. Dengan menggambar, anak dapat menggambar dan membuat desain sesuai dengan imajinasi mereka.",
-    "Mewarnai adalah kegiatan yang membantu anak untuk mengembangkan kreativitas. Dengan mewarnai, anak dapat mewarnai dan membuat desain sesuai dengan imajinasi mereka."
+    "Dengan robotik, anak dapat membuat robot sesuai dengan imajinasi mereka.",
+    "Dengan menggambar, anak dapat menggambar dan membuat desain sesuai dengan imajinasi mereka.",
+    "Dengan mewarnai, anak dapat mewarnai dan membuat desain sesuai dengan imajinasi mereka."
   ];
   final textTombol = ["Robotik", "Menggambar", "Mewarnai"];
   final judul = ["ROBOTIK", "MENGGAMBAR", "MEWARNAI"];
@@ -81,7 +81,7 @@ class _SliderPState extends State<SliderP> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: screenHeight * 0.25,
+                        height: screenHeight * 0.305,
                         child: PageView.builder(
                           controller: controller,
                           physics: const PageScrollPhysics(),
@@ -89,7 +89,7 @@ class _SliderPState extends State<SliderP> {
                           onPageChanged: (index) =>
                               setState(() => activeIndex = index),
                           itemBuilder: (context, index) {
-                            double scale = activeIndex == index ? 1 : 0.9;
+                            double scale = activeIndex == index ? 1 : 0.95;
                             return Transform.scale(
                               scale: scale,
                               child: Padding(
@@ -100,7 +100,6 @@ class _SliderPState extends State<SliderP> {
                                   urlImages[index],
                                   judul[index],
                                   deskripsi[index],
-                                  textTombol[index],
                                   index,
                                   screenHeight,
                                 ),
@@ -440,8 +439,13 @@ class _SliderPState extends State<SliderP> {
   }
 }
 
-Widget buildImage(String urlImage, String judul, String deskripsi,
-    String tombolText, int index, double screenHeight) {
+Widget buildImage(
+  String urlImage,
+  String judul,
+  String deskripsi,
+  int index,
+  double screenHeight,
+) {
   return Card(
     color: CustomColors.whiteColor,
     elevation: 10,
@@ -451,77 +455,66 @@ Widget buildImage(String urlImage, String judul, String deskripsi,
     clipBehavior: Clip.antiAlias,
     child: Stack(
       children: [
+        // Gambar
         Image.asset(
           urlImage,
           fit: BoxFit.cover,
           width: double.infinity,
-          height: screenHeight * 0.25,
+          height: screenHeight * 0.305,
         ),
+
+        // Overlay gradasi
         Container(
           width: double.infinity,
-          height: screenHeight * 0.25,
+          height: screenHeight * 0.305,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Colors.black.withOpacity(0.6),
+                Colors.black.withOpacity(0.3),
                 Colors.transparent,
-                Colors.black.withOpacity(0.6),
+                Colors.black.withOpacity(0.3),
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
           ),
         ),
+
+        // Judul di tengah
         Positioned.fill(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Flexible(
-                  child: Text(
-                    judul,
-                    style: TextStyle(
-                      color: CustomColors.whiteColor,
-                      fontSize: screenHeight * 0.025,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Flexible(
-                  child: Text(
-                    deskripsi,
-                    style: TextStyle(
-                      color: CustomColors.whiteColor,
-                      fontSize: screenHeight * 0.018,
-                    ),
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: CustomColors.grey.withOpacity(0.6),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: screenHeight * 0.02,
-                      vertical: screenHeight * 0.01,
-                    ),
-                  ),
-                  child: Text(
-                    tombolText,
-                    style: TextStyle(
-                        color: Colors.white, fontSize: screenHeight * 0.018),
-                  ),
-                ),
-              ],
+          child: Positioned(
+            top: 15,
+            left: 0,
+            right: 0,
+            child: Text(
+              judul,
+              style: TextStyle(
+                color: CustomColors.whiteColor,
+                fontSize: screenHeight * 0.025,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+
+        // Container bawah untuk deskripsi
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            color: Colors.black.withOpacity(0.5), // abu/hitam transparan
+            child: Text(
+              deskripsi,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: screenHeight * 0.018,
+              ),
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 3,
             ),
           ),
         ),
